@@ -12,14 +12,13 @@ import { NotFoundError } from './errors/not-found-error';
 const app = express();
 app.use(json());
 app.use(currentuserRouter);
-app.use(signinRouter);
+app.use(signinRouter); 
 app.use(singoutRouter);
 app.use(signupRouter);
-
+app.use(errorHandler);
 app.all('*', async ()=>{
     throw new NotFoundError();
-})
-app.use(errorHandler);
+});
 
 const start = async ()=>{
     try{
